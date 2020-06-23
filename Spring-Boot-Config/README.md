@@ -28,13 +28,13 @@ public static void main(String[] args) {
 }
 ```
 
-### 2.全局配置文件
+### 2.全局默认配置
 在src/main/resources目录下，Spring Boot提供了一个名为application.properties的全局配置文件，可对一些默认配置的配置值进行修改。
 
 > 附：[application.properties中可配置所有官方属性](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html)
 
 
-**2.1 自定义属性值**
+### 3.默认配置文件获取自定义属性值
 
 Spring Boot允许我们在application.properties下自定义一些属性，比如：
 
@@ -42,6 +42,7 @@ Spring Boot允许我们在application.properties下自定义一些属性，比�
 liuyu.blog.name=liuyu's blog
 liuyu.blog.title=Spring Boot
 ````
+**使用注解@Value映射**
 
 定义一个BlogProperties Bean，通过@Value("${属性名}")来加载配置文件中的属性值：
 
@@ -57,23 +58,6 @@ public class BlogProperties {
 	//get set省略
 }
 ````
-
-同时也可以不指定一个bean对象，可以直接通过@Value注解将配置文件中的值映射到一个Spring管理的Bean的字段上
-```java
-@RestController
-public class IndexController {
-	@Value("${liuyu.blog.name}")
-	private String name;
-
-	@Value("${liuyu.blog.title}")
-	private String title;
-	
-	@RequestMapping("/")
-	String index() {
-		return name+"，"+title;
-	}
-}
-```
 
 
 编写IndexController，注入该Bean：
@@ -96,6 +80,25 @@ liuyu's blog，Spring Boot
 ````
 
 
+同时也可以不指定一个bean对象，可以直接通过@Value注解将配置文件中的值映射到一个Spring管理的Bean的字段上。这里直接写在controller层中
+```java
+@RestController
+public class IndexController {
+	@Value("${liuyu.blog.name}")
+	private String name;
+
+	@Value("${liuyu.blog.title}")
+	private String title;
+	
+	@RequestMapping("/")
+	String index() {
+		return name+"，"+title;
+	}
+}
+```
+
+
+**使用注解@ConfigurationProperties映射**
 
 在属性非常多的情况下，也可以定义一个和配置文件对应的Bean：
 ```java
@@ -135,7 +138,7 @@ public class IndexController {
 }
 ```
 
-**2.2 属性间的引用**
+**属性间的引用**
 
 在application.properties配置文件中，各个属性可以相互引用，如下：
 ```
@@ -145,7 +148,7 @@ liuyu.blog.wholeTitle=${liuyu.blog.name}--${liuyu.blog.title}
 ```
 `wholeTitle`引用`liuyu.blog`的**name**和**title**
 
-### 自定义配置文件
+### 4.自定义配置文件获取自定义属性值
 
 除了可以在application.properties里配置属性，我们还可以自定义一个配置文件。在src/main/resources目录下新建一个test.properties:
 
@@ -181,6 +184,8 @@ public static void main(String[] args) {
     app.run(args);
 }
 ```
+注意：使用@ConfigurationProperties方式可以进行配置文件与实体字段的自动映射，但需要字段必须提供set方法才可以，而使用@Value注解修饰的字段不需要提供set方法
+
 
 ### 使用xml配置
 虽然Spring Boot并不推荐我们继续使用xml配置，但如果出现不得不使用xml配置的情况，Spring Boot允许我们在入口类里通过注解@ImportResource({"classpath:some-application.xml"})来引入xml配置文件。
