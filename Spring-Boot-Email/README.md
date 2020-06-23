@@ -14,14 +14,14 @@
 
 ## 3.邮件配置
 
-在application.yml中进行简单的配置（以163邮件为例）：
+在application.yml中进行简单的配置（以126邮件为例）：
 ```yml
 server:
   port: 80
 
 spring:
   mail:
-    host: smtp.163.com
+    host: smtp.126.com
     username: 你的账号
     password: 你的密码
     properties:
@@ -53,7 +53,10 @@ public class EmailController {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(from);
+            //单发
             message.setTo("888888@qq.com"); // 接收地址
+            //群发
+            //message.setTo(new String[]{"xxxx","xxxx"}); // 接收地址
             message.setSubject("一封简单的邮件"); // 标题
             message.setText("使用Spring Boot发送简单邮件。"); // 内容
             jms.send(message);
