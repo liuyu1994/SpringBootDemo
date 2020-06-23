@@ -34,7 +34,7 @@ public static void main(String[] args) {
 > 附：[application.properties中可配置所有官方属性](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html)
 
 
-**自定义属性值**
+**2.1 自定义属性值**
 
 Spring Boot允许我们在application.properties下自定义一些属性，比如：
 
@@ -135,7 +135,7 @@ public class IndexController {
 }
 ```
 
-**属性间的引用**
+**2.2 属性间的引用**
 
 在application.properties配置文件中，各个属性可以相互引用，如下：
 ```
