@@ -211,7 +211,7 @@ public class TestConfigBean {
 注解`@PropertySource("classpath:test.properties")`指明了使用哪个配置文件。要使用该配置Bean，同样也需要在入口类里使用注解`@EnableConfigurationProperties`({TestConfigBean.class})来启用该配置。
 
 
-### 通过命令行设置属性值
+### 5.通过命令行设置属性值
 在运行Spring Boot jar文件时，可以使用命令java -jar xxx.jar --server.port=8081来改变端口的值。这条命令等价于我们手动到application.properties中修改（如果没有这条属性的话就添加）server.port属性的值为8081。
 
 如果不想项目的配置被命令行修改，可以在入口文件的main方法中进行如下设置：
@@ -225,11 +225,11 @@ public static void main(String[] args) {
 注意：使用@ConfigurationProperties方式可以进行配置文件与实体字段的自动映射，但需要字段必须提供set方法才可以，而使用@Value注解修饰的字段不需要提供set方法
 
 
-### 使用xml配置
+### 6.使用xml配置
 虽然Spring Boot并不推荐我们继续使用xml配置，但如果出现不得不使用xml配置的情况，Spring Boot允许我们在入口类里通过注解@ImportResource({"classpath:some-application.xml"})来引入xml配置文件。
 
 
-### Profile配置
+### 7.Profile配置
 Profile用来针对不同的环境下使用不同的配置文件，多环境配置文件必须以application-{profile}.properties的格式命，其中{profile}为环境标识。比如定义两个配置文件：
 
 * application-dev.properties：开发环境
