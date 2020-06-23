@@ -1,6 +1,7 @@
 package com.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +18,16 @@ public class IndexController {
 	private ConfigBean configBean;
 	@Autowired
 	private TestConfigBean testConfigBean;
+
+
+	@Value("${liuyu.blog.name}")
+	private String name;
+
+	@Value("${liuyu.blog.title}")
+	private String title;
 	
 	@RequestMapping("/")
 	String index() {
-		return configBean.getName()+"，"+configBean.getTitle();
+		return name+"，"+title;
 	}
 }
