@@ -1,5 +1,5 @@
 ## Spring Boot一些基础配置
-### 定制Banner
+### 1.定制Banner
 Spring Boot项目在启动的时候会有一个默认的启动图案：
 ```
   .   ____          _            __ _ _
@@ -28,13 +28,14 @@ public static void main(String[] args) {
 }
 ```
 
-### 全局配置文件
+### 2.全局配置文件
 在src/main/resources目录下，Spring Boot提供了一个名为application.properties的全局配置文件，可对一些默认配置的配置值进行修改。
 
 > 附：[application.properties中可配置所有官方属性](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html)
 
 
-### 自定义属性值
+**自定义属性值**
+
 Spring Boot允许我们在application.properties下自定义一些属性，比如：
 
 ````
@@ -56,6 +57,24 @@ public class BlogProperties {
 	//get set省略
 }
 ````
+
+同时也可以不指定一个bean对象，可以直接通过@Value注解将配置文件中的值映射到一个Spring管理的Bean的字段上
+```java
+@RestController
+public class IndexController {
+	@Value("${liuyu.blog.name}")
+	private String name;
+
+	@Value("${liuyu.blog.title}")
+	private String title;
+	
+	@RequestMapping("/")
+	String index() {
+		return name+"，"+title;
+	}
+}
+```
+
 
 编写IndexController，注入该Bean：
 
@@ -116,7 +135,7 @@ public class IndexController {
 }
 ```
 
-### 属性间的引用
+**属性间的引用**
 
 在application.properties配置文件中，各个属性可以相互引用，如下：
 ```
