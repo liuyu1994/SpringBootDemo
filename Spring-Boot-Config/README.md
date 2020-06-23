@@ -39,8 +39,8 @@ public static void main(String[] args) {
 Spring Boot允许我们在application.properties下自定义一些属性，比如：
 
 ````
-mrbird.blog.name=liuyu's blog
-mrbird.blog.title=Spring Boot
+liuyu.blog.name=liuyu's blog
+liuyu.blog.title=Spring Boot
 ````
 
 定义一个BlogProperties Bean，通过@Value("${属性名}")来加载配置文件中的属性值：
@@ -99,7 +99,7 @@ liuyu's blog，Spring Boot
 
 在属性非常多的情况下，也可以定义一个和配置文件对应的Bean：
 ```java
-@ConfigurationProperties(prefix="mrbird.blog")
+@ConfigurationProperties(prefix="liuyu.blog")
 public class ConfigBean {
     private String name;
     private String title;
@@ -107,7 +107,7 @@ public class ConfigBean {
 }
 ```
 
-通过注解`@ConfigurationProperties(prefix="mrbird.blog")`指明了属性的通用前缀，通用前缀加属性名和配置文件的属性名一一对应。
+通过注解`@ConfigurationProperties(prefix="liuyu.blog")`通过注解@ConfigurationProperties(prefix=”配置文件中的key的前缀”)可以将配置文件中的配置自动与实体进行映射。
 
 除此之外还需在Spring Boot入口类加上注解@EnableConfigurationProperties({ConfigBean.class})来启用该配置：
 ```java
