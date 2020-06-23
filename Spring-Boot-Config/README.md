@@ -204,7 +204,12 @@ test.age=25
 public class TestConfigBean {
     private String name;
     private int age;
-    // get,set略
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setAge(int age) {
+		this.age = age;
+	}
 }
 ```
 
