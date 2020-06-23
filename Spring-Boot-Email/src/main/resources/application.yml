@@ -1,0 +1,15 @@
+server:
+  port: 80
+
+spring:
+  mail:
+    host: smtp.126.com  #以126为例
+    username: #发送者邮箱
+    password: #发送者邮箱授权码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
