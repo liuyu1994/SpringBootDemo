@@ -11,7 +11,7 @@ Spring Boot项目在启动的时候会有一个默认的启动图案：
  :: Spring Boot ::        (v1.5.9.RELEASE)
 ```
 
-我们可以把这个图案修改为自己想要的。在`src/main/resources`目录下新建`banner.txt`文件，然后将自己的图案黏贴进去即可。ASCII图案可通过网站http://www.network-science.de/ascii/一键生成，比如输入mrbird生成图案后复制到banner.txt，启动项目，IDEA控制台输出如下：
+我们可以把这个图案修改为自己想要的。在`src/main/resources`目录下新建`banner.txt`文件，然后将自己的图案黏贴进去即可。ASCII图案可通过网站 http://www.network-science.de/ascii/  一键生成，比如输入mrbird生成图案后复制到banner.txt，启动项目，IDEA控制台输出如下：
 ```
   _   _   _   _   _   _  
  / \ / \ / \ / \ / \ / \ 
@@ -48,10 +48,10 @@ mrbird.blog.title=Spring Boot
 @Component
 public class BlogProperties {
 	
-	@Value("${mrbird.blog.name}")
+	@Value("${liuyu.blog.name}")
 	private String name;
 	
-	@Value("${mrbird.blog.title}")
+	@Value("${liuyu.blog.title}")
 	private String title;
 	//get set省略
 }
