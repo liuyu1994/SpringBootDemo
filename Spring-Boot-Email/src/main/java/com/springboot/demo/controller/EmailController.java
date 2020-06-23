@@ -33,7 +33,10 @@ public class EmailController {
 		try {
 			SimpleMailMessage message = new SimpleMailMessage();
 			message.setFrom(from);
+			//单发
 			message.setTo("888888@qq.com"); // 接收地址
+			//群发
+			//message.setTo(new String[]{"xxxx","xxxx"}); // 接收地址
 			message.setSubject("一封简单的邮件"); // 标题
 			message.setText("使用Spring Boot发送简单邮件。"); // 内容
 			jms.send(message);
