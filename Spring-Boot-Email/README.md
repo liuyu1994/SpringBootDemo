@@ -252,7 +252,7 @@ public class EmailController {
     }
 }
 ```
-其中code对应模板里的${code}变量。启动项目，访问http://localhost/email/sendTemplateEmail?code=EOS9，页面提示发送成功。
+其中code对应模板里的${code}变量。启动项目，访问 http://localhost/email/sendTemplateEmail?code=EOS9 ，页面提示发送成功。
 
 
 
