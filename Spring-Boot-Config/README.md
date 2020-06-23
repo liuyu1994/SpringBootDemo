@@ -161,17 +161,13 @@ public class IndexController {
 public class IndexController {
 	private String name;
 	private String title;
-	
 	@RequestMapping("/")
 	String index() {
 		return name+"，"+title;
 	}
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
