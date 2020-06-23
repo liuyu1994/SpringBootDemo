@@ -44,6 +44,8 @@ liuyu.blog.title=Spring Boot
 ````
 **使用注解@Value映射**
 
+1.映射到实体Bean的方式（需要交spring管理@Component和使用时注入）
+
 定义一个BlogProperties Bean，通过@Value("${属性名}")来加载配置文件中的属性值：
 
 ````java
@@ -80,6 +82,8 @@ liuyu's blog，Spring Boot
 ````
 
 
+2.映射到字段的方式（必须是Spring管理的Bean的字段上）
+
 同时也可以不指定一个bean对象，可以直接通过@Value注解将配置文件中的值映射到一个Spring管理的Bean的字段上。这里直接写在controller层中
 ```java
 @RestController
@@ -100,13 +104,22 @@ public class IndexController {
 
 **使用注解@ConfigurationProperties映射**
 
+1.映射到bean对象的方式
+
 在属性非常多的情况下，也可以定义一个和配置文件对应的Bean：
 ```java
 @ConfigurationProperties(prefix="liuyu.blog")
 public class ConfigBean {
     private String name;
     private String title;
-    // get,set略
+    
+    //必选实现set方法
+    public void setName(String name) {
+    		this.name = name;
+    	}
+    public void setTitle(String title) {
+		this.title = title;
+	}
 }
 ```
 
@@ -137,6 +150,35 @@ public class IndexController {
     }
 }
 ```
+
+2.映射到属性的方式
+
+这里在controller层做示例
+
+```java
+@RestController
+@ConfigurationProperties(prefix="liuyu.blog")
+public class IndexController {
+	private String name;
+	private String title;
+	
+	@RequestMapping("/")
+	String index() {
+		return name+"，"+title;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+}
+```
+
+> 注意：使用@ConfigurationProperties方式可以进行配置文件与实体字段的自动映射，但需要字段必须提供set方法才可以，而使用@Value注解修饰的字段不需要提供set方法
 
 **属性间的引用**
 
