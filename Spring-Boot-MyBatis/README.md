@@ -1,7 +1,7 @@
 ## Spring Boot中使用MyBatis
 
 ### 1.Druid数据源
-Druid是一个关系型数据库连接池，是阿里巴巴的一个开源项目，地址：https://github.com/alibaba/druid。Druid不但提供连接池的功能，还提供监控功能，可以实时查看数据库连接池和SQL查询的工作情况。
+Druid是一个关系型数据库连接池，是阿里巴巴的一个开源项目，地址： https://github.com/alibaba/druid。Druid  不但提供连接池的功能，还提供监控功能，可以实时查看数据库连接池和SQL查询的工作情况。
 #### 配置Druid依赖
 Druid为Spring Boot项目提供了对应的starter：
 ```xml
@@ -85,7 +85,7 @@ spring:
 
 上述配置不但配置了Druid作为连接池，而且还开启了Druid的监控功能。 其他配置可参考官方wiki——https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter
 
-此时，运行项目，访问http://localhost:8080/web/druid：
+此时，运行项目，访问 http://localhost:8080/web/druid
 
 关于Druid的更多说明，可查看官方 wiki: https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98
 
@@ -189,7 +189,7 @@ public class TestController {
 		return this.studentService.queryStudentBySno("1");
 	}
 
-    //xml方式
+        //xml方式
 	@RequestMapping( value = "/querystudentByXml", method = RequestMethod.GET)
 	public List<Student> queryStudentByxml(String sno) {
 		return this.studentService.queryStudentByXml();
