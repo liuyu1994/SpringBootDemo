@@ -1,0 +1,6 @@
+server:
+  context-path: /web
+
+spring:
+  thymeleaf:
+    cache: false
