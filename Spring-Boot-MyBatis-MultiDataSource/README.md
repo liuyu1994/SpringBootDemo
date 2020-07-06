@@ -174,5 +174,5 @@ public interface OracleStudentMapper {
 Service，Controller请参考源码，这里不再赘述。
 
 
-启动项目，访问：http://localhost:8080/web/querystudentsfrommysql
-启动项目，访问：http://localhost:8080/web/querystudentsfromoracle
+启动项目，MySQL访问：http://localhost:8080/web/querystudentsfrommysql
+启动项目，Oracle：http://localhost:8080/web/querystudentsfromoracle
