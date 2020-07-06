@@ -12,7 +12,7 @@ Druid为Spring Boot项目提供了对应的starter：
 </dependency>
 ```
 
-#### Druid数据源配置
+#### Druid数据源配置（MySQL）
 上面通过查看mybatis starter的隐性依赖发现，Spring Boot的数据源配置的默认类型是org.apache.tomcat.jdbc.pool.Datasource，为了使用Druid连接池，需要在application.yml下配置：
 ```xml
 server:
@@ -54,6 +54,33 @@ logging:
 mybatis:   #配置包扫描，针对xml方式
   mapper-locations: classpath:mappers/*.xml
   type-aliases-package: com.springboot.bean
+```
+
+#### Druid数据源配置（Oracle）
+```xml
+server:
+  context-path: /web
+
+spring:
+  datasource:
+    druid:
+      # 数据库访问配置, 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@localhost:1521:ORCL
+      username: scott
+      password: 123456
+      # 连接池配置
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 连接等待超时时间
+      max-wait: 30000
+      # 配置检测可以关闭的空闲连接间隔时间
+      time-between-eviction-runs-millis: 60000
+      # 配置连接在池中的最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: select '1' from dual
 ```
 
 上述配置不但配置了Druid作为连接池，而且还开启了Druid的监控功能。 其他配置可参考官方wiki——https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter
