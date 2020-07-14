@@ -10,9 +10,21 @@
 </body>
 <script>
     $(function () {
-        $.get("http://test.liuyu.pw:8080/hello", function (data) {
+     /*   $.get("http://test.liuyu.pw:8080/hello", function (data) {
             $("#hello").text(data);
-        })
+            console.log(data)
+        })*/
+
+        $.ajax({
+            type: "GET",
+            url: "http://test.liuyu.pw:8080/hello",
+            data: "",
+            dataType: "text",
+            success: function (data) {
+                $("#hello").text(data);
+                console.log('data:'+data)
+            }
+        });
     })
 </script>
 </html>
